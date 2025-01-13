@@ -34,4 +34,13 @@ public class UserController {
     public void deleteSpecificUser(@PathVariable("userId") Long userId){
         userService.deleteUser(userId);
     }
+
+    @PatchMapping(path = "{userId}")
+    public void updateUser(
+            @PathVariable("userId") Long userId,
+            @RequestBody User user){
+        userService.updateUser(userId,user);
+    //userService.updateUser(userId,name, email, password);
+
+    }
 }

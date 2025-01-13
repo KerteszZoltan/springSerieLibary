@@ -2,16 +2,19 @@ package com.kerteszzoltan.springSeriLibrary.services;
 
 import com.kerteszzoltan.springSeriLibrary.models.User;
 import com.kerteszzoltan.springSeriLibrary.repositories.IUserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class UserService {
 
     private final IUserRepository userRepository;
+
 
     @Autowired
     public UserService(IUserRepository userRepository){
@@ -37,4 +40,24 @@ public class UserService {
         }
         userRepository.deleteById(userId);
     }
+
+    @Transactional
+    public void updateUser(Long userId,User user){
+        User tempUser = userRepository.findById(userId).orElseThrow(
+                ()-> new IllegalStateException("This id: "+ userId +" is not stored in the database" ));
+        System.out.println(tempUser.getEmail());
+        System.out.println(user.getEmail());
+
+        if (user.getEmail() != null){
+            tempUser.setEmail(user.getEmail());
+        }
+        if(user.getPassword() != null){
+            tempUser.setPassword(user.getPassword());
+        }
+        if(user.getName() != null){
+            tempUser.setName(user.getName());
+        }
+
+        userRepository.save(tempUser);
+    };
 }
