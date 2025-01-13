@@ -1,9 +1,31 @@
 package com.kerteszzoltan.springSeriLibrary.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "`User`")
 public class User {
+    @Id
+    @SequenceGenerator(
+            name = "userSequence",
+            sequenceName = "userSequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "userSequence"
+    )
+
+    @Column
     private long id;
+
+    @Column
     private String name;
+
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
 
     public User() {
