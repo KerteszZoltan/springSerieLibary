@@ -3,7 +3,7 @@ package com.kerteszzoltan.springSeriLibrary.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "`User`")
+@Table(name = "`Users`")
 public class User {
     @Id
     @SequenceGenerator(

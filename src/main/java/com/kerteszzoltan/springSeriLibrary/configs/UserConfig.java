@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class UserConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(IUserRepository userRepository){
+    CommandLineRunner commandLineRunnerUser(IUserRepository userRepository){
         return args -> {
             User teszt = new User("teszt", "teszt@teszt.hu", "teszt");
             userRepository.save(teszt);

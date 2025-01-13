@@ -45,8 +45,6 @@ public class UserService {
     public void updateUser(Long userId,User user){
         User tempUser = userRepository.findById(userId).orElseThrow(
                 ()-> new IllegalStateException("This id: "+ userId +" is not stored in the database" ));
-        System.out.println(tempUser.getEmail());
-        System.out.println(user.getEmail());
 
         if (user.getEmail() != null){
             tempUser.setEmail(user.getEmail());

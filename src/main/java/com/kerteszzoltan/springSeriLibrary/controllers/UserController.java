@@ -40,7 +40,5 @@ public class UserController {
             @PathVariable("userId") Long userId,
             @RequestBody User user){
         userService.updateUser(userId,user);
-    //userService.updateUser(userId,name, email, password);
-
     }
 }
