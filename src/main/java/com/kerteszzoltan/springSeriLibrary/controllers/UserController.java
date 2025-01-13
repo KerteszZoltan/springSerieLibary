@@ -30,4 +30,8 @@ public class UserController {
     public void registerNewUser(@RequestBody User user){
         userService.addNewUser(user);
     }
+    @DeleteMapping(path = "{userId}")
+    public void deleteSpecificUser(@PathVariable("userId") Long userId){
+        userService.deleteUser(userId);
+    }
 }
