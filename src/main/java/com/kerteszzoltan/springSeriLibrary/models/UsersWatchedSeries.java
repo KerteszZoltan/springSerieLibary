@@ -3,43 +3,40 @@ package com.kerteszzoltan.springSeriLibrary.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "`UsersWatchedSeries`")
 public class UsersWatchedSeries {
 
     @Id
-    @SequenceGenerator(
-            name = "usersWatchedSeriesSequence",
-            sequenceName = "usersWatchedSeriesSequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "usersWatchedSeriesSequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private Long userid;
-    @Column
-    private Long serieid;
+
+
+    @ManyToOne
+    @JoinColumn(name = "serieid")
+    private Serie serie;
+
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private User user;
+
     @Column
     private LocalDate watchedAt;
 
-    public UsersWatchedSeries() {
+    public UsersWatchedSeries(long id, long teszt1Id, LocalDate now) {
     }
 
-    public UsersWatchedSeries(Long userid, Long serieid, LocalDate watchedAt) {
-        this.userid = userid;
-        this.serieid = serieid;
+    public UsersWatchedSeries(Serie serie, User user, LocalDate watchedAt) {
+        this.serie = serie;
+        this.user = user;
         this.watchedAt = watchedAt;
     }
 
-    public UsersWatchedSeries(Long id, Long userid, Long serieid, LocalDate watchedAt) {
+    public UsersWatchedSeries(Long id, Serie serie, User user, LocalDate watchedAt) {
         this.id = id;
-        this.userid = userid;
-        this.serieid = serieid;
+        this.serie = serie;
+        this.user = user;
         this.watchedAt = watchedAt;
     }
 
@@ -51,20 +48,20 @@ public class UsersWatchedSeries {
         this.id = id;
     }
 
-    public Long getUserid() {
-        return userid;
+    public Serie getSerie() {
+        return serie;
     }
 
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
-    public Long getSerieid() {
-        return serieid;
+    public User getUser() {
+        return user;
     }
 
-    public void setSerieid(Long serieid) {
-        this.serieid = serieid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDate getWatchedAt() {

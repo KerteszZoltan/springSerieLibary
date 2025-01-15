@@ -2,21 +2,14 @@ package com.kerteszzoltan.springSeriLibrary.models;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "`Users`")
 public class User {
     @Id
-    @SequenceGenerator(
-            name = "userSequence",
-            sequenceName = "userSequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "userSequence"
-    )
-
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
@@ -27,6 +20,9 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UsersWatchedSeries> usersWatchedSeriesSet = new HashSet<>();
 
     public User() {
     }

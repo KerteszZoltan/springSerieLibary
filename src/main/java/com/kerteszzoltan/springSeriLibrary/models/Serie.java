@@ -3,16 +3,15 @@ package com.kerteszzoltan.springSeriLibrary.models;
 import jakarta.persistence.*;
 import org.w3c.dom.Text;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "`Series`")
 public class Serie {
 
     @Id
-    @SequenceGenerator(name = "serieSequence",
-    sequenceName = "serieSequence",
-    allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-    generator = "serieSequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique = true)
     private String titleEN;
@@ -21,6 +20,9 @@ public class Serie {
     private String descriptionEN;
     @Column(columnDefinition = "TEXT")
     private String descriptionHU;
+
+    @OneToMany(mappedBy = "serie")
+    private Set<UsersWatchedSeries> usersWatchedSeriesSet = new HashSet<>();
 
     public long getId() {
         return id;
