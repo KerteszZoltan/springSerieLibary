@@ -16,7 +16,18 @@ public class SerieConfig {
                     "teszthuntitle",
                     "tesztdiscriptionen",
                     "tesztdiscriptionhu");
+            Serie teszt1 = new Serie("tesztentitle1",
+                    "teszthuntitle1",
+                    "tesztdiscriptionen",
+                    "tesztdiscriptionhu");
+            Serie teszt2 = new Serie("tesztentitle2",
+                    "teszthuntitle2",
+                    "tesztdiscriptionen",
+                    "tesztdiscriptionhu");
             serieRepository.save(teszt);
+            serieRepository.save(teszt1);
+            serieRepository.save(teszt2);
+
         };
     }
 }

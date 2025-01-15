@@ -14,6 +14,7 @@ public class Serie {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
     generator = "serieSequence")
     private long id;
+    @Column(unique = true)
     private String titleEN;
     private String titleHU;
     @Column(columnDefinition = "TEXT")

@@ -3,10 +3,7 @@ package com.kerteszzoltan.springSeriLibrary.controllers;
 import com.kerteszzoltan.springSeriLibrary.models.Serie;
 import com.kerteszzoltan.springSeriLibrary.services.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,5 +27,21 @@ public class SerieController {
     @GetMapping(path = "{serieId}")
     public Optional<Serie> getOneSerie(@PathVariable ("serieId") Long serieId){
         return serieService.getOneSerie(serieId);
+    }
+
+    @DeleteMapping(path = "{serieId}")
+    public Optional<Serie> deleteSerieById(@PathVariable("serieId") Long serieId){
+        return serieService.deleteSerieById(serieId);
+    }
+
+    @PatchMapping(path = "{serieId}")
+    public Optional<Serie> updateSerieById(@PathVariable("serieId") Long serieId,
+                                           @RequestBody Serie serie){
+        return serieService.updateSerie(serieId,serie);
+    }
+
+    @PostMapping
+    public Optional<Serie> addSerie(@RequestBody Serie serie){
+        return serieService.addSerie(serie);
     }
 }
