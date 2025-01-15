@@ -33,6 +33,9 @@ public class SerieService {
 
     public Optional<Serie> addSerie(Serie serie){
         Optional<Serie> existSerie = serieRepository.findByTitleEN(serie.getTitleEN());
+        if(existSerie.isPresent()){
+            throw new IllegalStateException("This title: "+serie.getTitleEN()+" stored in the database");
+        }
         return Optional.of(serieRepository.save(serie));
     }
 
